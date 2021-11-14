@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 // import desktop from "./assets/home/background-home-desktop.jpg";
 // import tablet from "./assets/home/background-home-tablet.jpg";
 // import mobile from "./assets/home/background-home-mobile.jpg";
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle`
 *{
     margin: 0;
     overflow-y: hidden;
@@ -32,7 +32,6 @@ const GlobalStyle = createGlobalStyle `
     --des-text: 18px;
 
 }
-
 
 `;
 
