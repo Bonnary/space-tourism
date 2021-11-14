@@ -6,8 +6,8 @@ export default function Menu({ Click }) {
   return (
     <Container className={Click && "active"}>
       <TextWrapper>
-        <Text to="">00 home</Text>
-        <Text to="">01 destination</Text>
+        <Text to="/">00 home</Text>
+        <Text to="destination">01 destination</Text>
         <Text to="">02 crew</Text>
         <Text to="">03 technology</Text>
       </TextWrapper>
@@ -37,7 +37,7 @@ const Container = styled.div`
 `;
 
 const TextWrapper = styled.ul`
-display: grid;
+  display: grid;
   gap: 2rem;
 `;
 

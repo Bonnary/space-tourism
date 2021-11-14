@@ -2,18 +2,19 @@ import styled from "styled-components";
 import logo from "../assets/shared/logo.svg";
 import { Link } from "react-router-dom";
 import MenuIcon from "./MenuIcon";
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import Menu from "./Menu";
-
+import { FaSpaceShuttle } from "react-icons/fa";
 
 export default function Header({ home, destination, crew, technology }) {
   const [Click, setClick] = useState(false);
 
-
   return (
     <Container>
       <Wrapper>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
         <Line />
         <TextContainer>
           {home ? (
@@ -48,8 +49,16 @@ export default function Header({ home, destination, crew, technology }) {
             <Text to="">03 technology</Text>
           )}
         </TextContainer>
-        <MenuIcon Click={Click} setClick={setClick} />
-        <Menu Click={Click} setClick={setClick} />
+        {destination ? (
+          <IconContainer to="/">
+            <Icon />
+          </IconContainer>
+        ) : (
+          <>
+            <MenuIcon Click={Click} setClick={setClick} />
+            <Menu Click={Click} setClick={setClick} />
+          </>
+        )}
       </Wrapper>
     </Container>
   );
@@ -62,7 +71,6 @@ const Container = styled.nav`
   @media (max-width: 1025px) {
     margin: 2.7rem 0 0 1.5rem;
   }
-
 `;
 const Wrapper = styled.div`
   display: grid;
@@ -120,4 +128,19 @@ const Text = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   font-weight: bold;
+`;
+
+const IconContainer = styled(Link)`
+  margin-left: 8rem;
+  @media (min-width: 770px) {
+    display: none;
+  }
+`;
+
+const Icon = styled(FaSpaceShuttle)`
+  transform: rotate(-90deg);
+  width: 32px;
+  height: 25px;
+  color: white;
+  margin-top: 10px;
 `;
