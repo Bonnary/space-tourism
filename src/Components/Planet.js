@@ -4,20 +4,63 @@ import React, { useRef, Suspense } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import moon from "../assets/3D-texture/moon.jpg";
+import mars from "../assets/3D-texture/mars.jpg";
+import europa from "../assets/3D-texture/europa.jpg";
+import titan from "../assets/3D-texture/titan.jpg";
 
-const Box = () => {
-  const mesh = useRef(false);
-  const texture = useLoader(THREE.TextureLoader, moon);
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.005));
-  return (
-    <mesh castShadow ref={mesh}>
-      <dodecahedronGeometry args={[2, 100]} />
-      <meshBasicMaterial attach="material" map={texture} />
-    </mesh>
-  );
-};
-
-function Planet() {
+function Planet({ index }) {
+  const Moon = () => {
+    const mesh = useRef(false);
+    const texture = useLoader(THREE.TextureLoader, moon);
+    useFrame(
+      () => (mesh.current.rotation.x = mesh.current.rotation.y += 0.001)
+    );
+    return (
+      <mesh castShadow ref={mesh}>
+        <dodecahedronGeometry args={[2, 100]} />
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    );
+  };
+  const Mars = () => {
+    const mesh = useRef(false);
+    const texture = useLoader(THREE.TextureLoader, mars);
+    useFrame(
+      () => (mesh.current.rotation.x = mesh.current.rotation.y += 0.001)
+    );
+    return (
+      <mesh castShadow ref={mesh}>
+        <dodecahedronGeometry args={[2, 100]} />
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    );
+  };
+  const Europa = () => {
+    const mesh = useRef(false);
+    const texture = useLoader(THREE.TextureLoader, europa);
+    useFrame(
+      () => (mesh.current.rotation.x = mesh.current.rotation.y += 0.001)
+    );
+    return (
+      <mesh castShadow ref={mesh}>
+        <dodecahedronGeometry args={[2, 100]} />
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    );
+  };
+  const Titan = () => {
+    const mesh = useRef(false);
+    const texture = useLoader(THREE.TextureLoader, titan);
+    useFrame(
+      () => (mesh.current.rotation.x = mesh.current.rotation.y += 0.001)
+    );
+    return (
+      <mesh castShadow ref={mesh}>
+        <dodecahedronGeometry args={[2, 100]} />
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    );
+  };
   return (
     <Container>
       <Canvas
@@ -41,7 +84,11 @@ function Planet() {
         <pointLight position={[-10, 0, -20]} intensity={0.5} />
         <pointLight position={[0, -10, 0]} intensity={1.5} />
         <Suspense fallback={null}>
-          <Box />
+          {index === 0 && <Moon />}
+          {index === 1 && <Mars />}
+          {index === 2 && <Europa />}
+          {index === 3 && <Titan />}
+
           <OrbitControls />
         </Suspense>
       </Canvas>
